@@ -8,10 +8,12 @@ namespace Practice_Shop
 {
     public class Shop
     {
+        private static Shop _instance = new Shop(); 
         private Product[] _product;
         private int _index;
 
-        public Shop()
+        public static Shop Instance => _instance;
+        private Shop()
         {
             _product = new Product[50];
         }
