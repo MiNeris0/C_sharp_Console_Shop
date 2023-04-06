@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Practice_Shop
 {
-    public class Order
+    public enum ProductType
     {
+        History,
+        SciFi,
+        Fantasy,
+        Philosophy,
+        Politics
     }
 }
