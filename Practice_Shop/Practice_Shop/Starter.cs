@@ -10,6 +10,16 @@ namespace Practice_Shop
     {
         public static void Run()
         {
+            Customer customer = CreateCustomer();
+            ShopFiller filler = new ShopFiller();
+            Shop shop = new Shop();
+
+            customer.PrintCustomerInfo();
+            shop.ListProducts();
+        }
+
+        private static Customer CreateCustomer()
+        {
             Console.WriteLine("You need to make shop-account.\nPlease, print your nickname: ");
             string name = Console.ReadLine();
             Console.WriteLine("Great, and how much money do you want to deposit into the account?");
@@ -26,8 +36,7 @@ namespace Practice_Shop
             }
 
             Customer customer = new Customer(name, cash);
-            customer.PrintCustomerInfo();
-
+            return customer;
         }
     }
 }

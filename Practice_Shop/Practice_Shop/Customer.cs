@@ -8,9 +8,9 @@ namespace Practice_Shop
 {
     public class Customer
     {
-        private string _username;
+        private readonly string _username;
         private int _cash;
-        private int _id;
+        private readonly int _id;
 
         public string Username { get { return _username; } }
         public int Id { get { return _id; } }
