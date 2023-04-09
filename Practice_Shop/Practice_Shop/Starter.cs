@@ -6,19 +6,33 @@ using System.Threading.Tasks;
 
 namespace Practice_Shop
 {
-    public class Starter
+    public static class Starter
     {
         public static void Run()
         {
-            Customer customer = CreateCustomer();
-            ShopFiller filler = new ShopFiller();
-            Shop shop = new Shop();
+            Console.WriteLine("Good day, friend! Would you like to visit my book shop? (Y / N)");
+            string answer = Console.ReadLine();
 
-            customer.PrintCustomerInfo();
-            shop.ListProducts();
+            if (answer == "Y" || answer == "y" || answer == "Yes" || answer == "yes")
+            {
+                Start();
+            }
+            else
+            {
+                Console.WriteLine("Good bye and watch your back!");
+            }
+        }
+        public static void Start()
+        {
+            CreateCustomer();
+
+            Customer.Instance.PrintCustomerInfo();
+            Console.WriteLine("So, come in, friend.");
+            Console.ReadKey();
+            Shop.Instance.ListProducts();
         }
 
-        private static Customer CreateCustomer()
+        private static void CreateCustomer()
         {
             Console.WriteLine("You need to make shop-account.\nPlease, print your nickname: ");
             string name = Console.ReadLine();
@@ -27,16 +41,16 @@ namespace Practice_Shop
 
             if (string.IsNullOrEmpty(name))
             {
-                throw new ArgumentNullException(nameof(name), "Name should contain at least 1 character!");
+                Console.WriteLine("Name should contain at least 1 character!");
+                CreateCustomer();
             }
-
-            if (cash < 0)
+            else if (cash < 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(cash), "You should deposit at least 1 coin!");
+                Console.WriteLine("You should deposit at least 1 coin!");
+                CreateCustomer();
             }
 
-            Customer customer = new Customer(name, cash);
-            return customer;
+            Customer.Instance.FillCustomerInfo(name, cash);
         }
     }
 }

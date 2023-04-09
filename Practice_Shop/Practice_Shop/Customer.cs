@@ -8,19 +8,24 @@ namespace Practice_Shop
 {
     public class Customer
     {
-        private readonly string _username;
-        private int _cash;
+        private static Customer _instance = new Customer();
+        private string _username;
         private readonly int _id;
 
+        public static Customer Instance => _instance;
         public string Username { get { return _username; } }
         public int Id { get { return _id; } }
-        public int Cash { get { return _cash; } }
+        public int Cash { get; set; }
 
-        public Customer(string username, int cash)
+        private Customer()
+        {
+            _id = new Random().Next(0, int.MaxValue);
+        }
+
+        public void FillCustomerInfo(string username, int cash)
         {
             _username = username;
-            _cash = cash;
-            _id = new Random().Next(0, int.MaxValue);
+            Cash = cash;
         }
 
         public void PrintCustomerInfo()

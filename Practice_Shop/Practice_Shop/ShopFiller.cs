@@ -8,11 +8,11 @@ namespace Practice_Shop
 {
     public class ShopFiller
     {
-        private string[] _names;
-        private ProductType[] _types;
-        private string[] _descriptions;
-        private int[] _prices;
-        private int[] _id;
+        private readonly string[] _names;
+        private readonly ProductType[] _types;
+        private readonly string[] _descriptions;
+        private readonly int[] _prices;
+        private readonly int[] _id;
 
         public ShopFiller()
         {
@@ -28,15 +28,13 @@ namespace Practice_Shop
             GetId(ref _id);
         }
 
-        public Product GetProduct(int i, Product _product)
+        public void GetProduct(int i, ref Product _product)
         {
             _product.ProductName = _names[i];
             _product.Type = _types[i];
             _product.ProductDescription = _descriptions[i];
             _product.Price = _prices[i];
             _product.ProductId = _id[i];
-
-            return _product;
         }
 
         private void GetNames( ref string[] _names)
